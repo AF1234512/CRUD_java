@@ -1,0 +1,72 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class crud_inventario {
+    public static void main(String[] args) {
+        List<String> producto = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+        int opcion;
+
+        do {
+            System.out.println("========== inventario ==========");
+            System.out.println(" Agregar producto ");
+            System.out.println(" Mostrar producto");
+            System.out.println(" Eliminar producto");
+            System.out.println(" Salir");
+            System.out.print("opción: ");
+            opcion = scanner.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    System.out.print("Ingrese producto: ");
+                    scanner.nextLine(); 
+                    String productos = scanner.nextLine();
+                    producto.add(productos);
+                    System.out.println("producto agregado correctamente.");
+                    break;
+
+                case 2:
+                    if (producto.isEmpty()) {
+                        System.out.println("No hay producto para mostrar.");
+                    } else {
+                        System.out.println("=== producto almacenados ===");
+                        for (String productoactual : producto) {
+                            System.out.println(productoactual);
+                        }
+                    }
+                    break;
+
+                case 3:
+                    if (producto.isEmpty()) {
+                        System.out.println("No hay productos para eliminar.");
+                    } else {
+                        System.out.println("productos almacenados:");
+                        for (int i = 0; i < producto.size(); i++) {
+                            System.out.println((i + 1) + ". " + producto.get(i));
+                        }
+                        System.out.print("Ingrese el número del dato a eliminar: ");
+                        int indice = scanner.nextInt();
+                        if (indice >= 1 && indice <= producto.size()) {
+                            producto.remove(indice - 1);
+                            System.out.println("producto eliminado correctamente.");
+                        } else {
+                            System.out.println("Opción inválida.");
+                        }
+                    }
+                    break;
+
+                case 4:
+                    System.out.println("Saliendo...");
+                    break;
+
+                default:
+                    System.out.println("Opción inválida.");
+                    break;
+            }
+
+        } while (opcion != 4);
+
+        scanner.close();
+    }
+}
